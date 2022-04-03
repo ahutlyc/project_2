@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../jquery.js"> </script>
+  <style>
+    html,
+    body{
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    #angle{
+      position: absolute;
+    }
+
+  </style>
+</head>
+<body>
+  <img src="../images/angel.gif" alt="" id="angle">
+  <script>
+    $(function(){
+      var angle = $('#angle')
+      //1.定义一个time节流阀
+      var timer = null;
+      $(document).on('mousemove',function(e){
+        //2.判断节流阀是否为空
+        if(timer){return}
+        timer = setTimeout(function(){
+          $(angle).css('left',e.pageX+'px').css('top',e.pageY+'px')
+          timer = null;//3.当设置了鼠标节流阀效果后，清空timer节流阀，方便下次开启延时器
+        },16)
+      })
+    })
+  </script>
+  
+</body>
+</html>
